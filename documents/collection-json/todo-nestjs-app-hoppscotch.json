@@ -1,0 +1,93 @@
+{
+  "v": 2,
+  "name": "todo-nestjs-app",
+  "folders": [],
+  "requests": [
+    {
+      "v": "3",
+      "endpoint": "http://localhost:3000/todo",
+      "name": "find-all-todo",
+      "params": [],
+      "headers": [],
+      "method": "GET",
+      "auth": { "authType": "inherit", "authActive": true },
+      "preRequestScript": "",
+      "testScript": "",
+      "body": { "contentType": null, "body": null },
+      "requestVariables": []
+    },
+    {
+      "v": "3",
+      "endpoint": "http://localhost:3000/todo/a2321646-8c69-498e-a905-5facfe194def",
+      "name": "find-one-by-id",
+      "params": [],
+      "headers": [],
+      "method": "GET",
+      "auth": { "authType": "inherit", "authActive": true },
+      "preRequestScript": "",
+      "testScript": "",
+      "body": { "contentType": null, "body": null },
+      "requestVariables": []
+    },
+    {
+      "v": "3",
+      "endpoint": "http://localhost:3000/todo",
+      "name": "create-todo",
+      "params": [],
+      "headers": [],
+      "method": "POST",
+      "auth": { "authType": "inherit", "authActive": true },
+      "preRequestScript": "",
+      "testScript": "",
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"name\": \"Task 3\"\n}"
+      },
+      "requestVariables": []
+    },
+    {
+      "v": "3",
+      "endpoint": "",
+      "name": "edit-todo",
+      "params": [],
+      "headers": [],
+      "method": "PATCH",
+      "auth": { "authType": "inherit", "authActive": true },
+      "preRequestScript": "",
+      "testScript": "",
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"name\": \"Task is not good\",\n  \"description\": \"ddesc\"\n}"
+      },
+      "requestVariables": []
+    },
+    {
+      "v": "3",
+      "endpoint": "http://localhost:3000/todo/a2321646-8c69-498e-a905-5facfe194def/change-status",
+      "name": "change-status-todo",
+      "params": [],
+      "headers": [],
+      "method": "PATCH",
+      "auth": { "authType": "inherit", "authActive": true },
+      "preRequestScript": "",
+      "testScript": "",
+      "body": { "contentType": "application/json", "body": "" },
+      "requestVariables": []
+    },
+    {
+      "v": "3",
+      "endpoint": "http://localhost:3000/todo/a2321646-8c69-498e-a905-5facfe194def",
+      "name": "delete-todo",
+      "params": [],
+      "headers": [],
+      "method": "DELETE",
+      "auth": { "authType": "inherit", "authActive": true },
+      "preRequestScript": "",
+      "testScript": "",
+      "body": { "contentType": null, "body": null },
+      "requestVariables": []
+    }
+  ],
+  "auth": { "authType": "none", "authActive": true },
+  "headers": []
+}

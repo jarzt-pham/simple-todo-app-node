@@ -1,73 +1,90 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Simple Todo App
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This is a simple todo app built with Node.js and Nest Js framework.
+You can learn the simple structure project and how to setup docker compose to run project through docker compose file
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Prerequisites
 
-## Description
+If you run the app on your local machine, make sure you have the following installed on your machine:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Node.js
+- npm
+
+If your machine installed Docker, doesn't care above content :)
 
 ## Installation
 
-```bash
-$ npm install
-```
-
-## Running the app
+1. Clone the repository:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+git clone https://github.com/jarzt-pham/simple-todo-app-node.git
 ```
 
-## Test
+2. Navigate to the project directory:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+cd simple-todo-app-node
 ```
 
-## Support
+3. Follow the Prerequisites Section:<br />
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```
+Node.js and npm:
+bash
+> npm install
+```
 
-## Stay in touch
+```
+Docker Setup:
+bash
+> docker compose up
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## API
 
-## License
+You can import the collection in the documents/collection-json. I used [Hoppscotch](https://hoppscotch.io/) to test my apis :)
 
-Nest is [MIT licensed](LICENSE).
+### Find All Todos
+
+- **URL:** `/todo`
+- **Method:** GET
+- **Description:** Get all todos
+- **Response:** JSON array of todos
+
+### Find One Todo
+
+- **URL:** `/todo/:id`
+- **Method:** GET
+- **Description:** Get a specific todo by ID
+- **Response:** JSON object of the todo
+
+### Create Todo
+
+- **URL:** `/todo`
+- **Method:** POST
+- **Description:** Create a new todo
+- **Request Body:** JSON object with todo details
+- **Response:** JSON object of the created todo
+
+### Edit Todo
+
+- **URL:** `/todo/:id`
+- **Method:** PUT
+- **Description:** Update a specific todo by ID
+- **Request Body:** JSON object with updated todo details
+- **Response:** JSON object of the updated todo
+
+### Change Todo Status
+
+- **URL:** `/todo/:id/change-status`
+- **Method:** PATCH
+- **Description:** Change the status of a specific todo by ID
+- **Request Body:** JSON object with new status
+- **Response:** JSON object of the updated todo
+
+### Delete Todo
+
+- **URL:** `/todo/:id`
+- **Method:** DELETE
+- **Description:** Delete a specific todo by ID
+- **Response:** Success message
