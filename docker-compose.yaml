@@ -1,45 +1,3 @@
-# version: '3'
-# services:
-#   server: 
-#     build: .
-#     container_name: my_app
-#     image: node:latest
-#     env_file:
-#       - .env
-#     networks:
-#       - app_network
-#     restart: always
-#     ports:
-#       - 3000:3000
-#     volumes:
-#       - .:/app
-#     working_dir: /app
-#     command: bash -c "npm run build && npm run migration:up && npm run start"
-#     depends_on:
-#       - db
-
-#   db:
-#     image: postgres
-#     env_file:
-#       - .env
-#     networks:
-#       - app_network
-#     restart: always
-#     environment:
-#       - POSTGRES_USER=${DATABASE_USER}
-#       - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
-#       - POSTGRES_DB=${DATABASE_DB}
-#       - POSTGRES_HOST=db
-#     volumes:
-#       - ./docker/data/db:/var/lib/postgresql/data
-#     ports:
-#       - "${DATABASE_PORT}:5432"
-
-# networks:
-#   app_network:
-#     driver: bridge
-
-
 version: '3'
 
 networks:
@@ -47,6 +5,29 @@ networks:
     driver: bridge
 
 services:
+  app: 
+    build: .
+    container_name: app
+    image: node:latest
+    env_file:
+      - .env
+    environment:
+      - DATABASE_PORT=${DATABASE_PORT}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_DB=${DATABASE_DB}
+    networks:
+      - app_network
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ["npm", "run", "start:dev"]
+    depends_on:
+      - db
+
   db:
     container_name: database
     image: postgres
@@ -62,30 +43,4 @@ services:
     volumes:
       - ./docker/data/db:/var/lib/postgresql/data
     ports:
-      - 5432:5432
-      
-  server: 
-    build: .
-    container_name: app
-    image: node:latest
-    env_file:
-      - .env
-    environment:
-      - DATABASE_HOST=${MACHINE_HOST_IP}:3306
-      - DATABASE_PORT=${DATABASE_PORT}
-      - DATABASE_USER=${DATABASE_USER}
-      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
-      - DATABASE_DB=${DATABASE_DB}
-    networks:
-      - app_network
-    restart: always
-    ports:
-      - 3000:3000
-    volumes:
-      - .:/app
-    working_dir: /app
-    command: bash -c "npm run build && npm run migration:up && npm run start"
-    depends_on:
-      - db
-    links:
-      - db
+      - "${DATABASE_PORT}:5432"

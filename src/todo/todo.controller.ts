@@ -7,10 +7,9 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { TodoService } from './todo.service';
-import { CreateTodoDto } from './dto/create-todo.dto';
-import { UpdateTodoDto } from './dto/update-todo.dto';
+import { TodoService } from './services/todo/todo.service';
 import { ConfigService } from '@nestjs/config';
+import { ChangeStatusTodoDto, CreateTodoDto, EditTodoDto } from './dto';
 
 @Controller('todo')
 export class TodoController {
@@ -26,22 +25,29 @@ export class TodoController {
 
   @Get()
   findAll() {
-    console.log(this.configService.get('DATABASE_USER'));
     return this.todoService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.todoService.findOne(+id);
+    return this.todoService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTodoDto: UpdateTodoDto) {
-    return this.todoService.update(+id, updateTodoDto);
+  updateContent(@Param('id') id: string, @Body() updateTodoDto: EditTodoDto) {
+    console.log({ id });
+    return this.todoService.edit(id, updateTodoDto);
+  }
+  @Patch(':id/change-status')
+  updateStatus(
+    @Param('id') id: string,
+    @Body() changeStatusTodoDto: ChangeStatusTodoDto,
+  ) {
+    return this.todoService.changeStatus(id, changeStatusTodoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.todoService.remove(+id);
+    return this.todoService.remove(id);
   }
 }
